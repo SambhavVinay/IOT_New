@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IoT Ultrasonic Object Detection</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    header {
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 15px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin-bottom: 30px;
+      line-height: 1.6;
+      color: #d3d3d3;
+    }
+
+    .btn {
+      background: #00c6ff;
+      background: linear-gradient(90deg, #0072ff, #00c6ff);
+      color: white;
+      border: none;
+      padding: 14px 30px;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      transform: scale(1.08);
+      background: linear-gradient(90deg, #00c6ff, #0072ff);
+      box-shadow: 0px 0px 15px rgba(0, 198, 255, 0.5);
+    }
+
+    footer {
+      position: absolute;
+      bottom: 15px;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        font-size: 2rem;
+      }
+      p {
+        font-size: 1rem;
+        padding: 0 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>IoT Ultrasonic Object Detection</header>
+  <p>
+    This project uses an IoT-based ultrasonic sensor system to detect objects in real-time.
+    It accurately measures distance and senses motion using infrared and ultrasonic sensing technology.
+  </p>
+
+  <a href="/logs" class="btn">View Detection Logs</a>
+
+  <footer>
+    © 2025 IoT Object Detection | Built with ❤️ by Team Innovators
+  </footer>
+</body>
+</html>

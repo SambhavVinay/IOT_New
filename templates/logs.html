@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detection Logs | IoT Ultrasonic Object Detection</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+      text-align: center;
+      color: #fff;
+    }
+
+    table {
+      width: 90%;
+      max-width: 900px;
+      border-collapse: collapse;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    }
+
+    th, td {
+      padding: 14px 20px;
+      text-align: center;
+    }
+
+    th {
+      background: rgba(0, 198, 255, 0.25);
+      font-weight: 600;
+      color: #00e1ff;
+      letter-spacing: 0.5px;
+    }
+
+    tr:nth-child(even) {
+      background-color: rgba(255, 255, 255, 0.08);
+    }
+
+    tr:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+      transition: 0.3s;
+    }
+
+    .btn {
+      margin-top: 30px;
+      background: linear-gradient(90deg, #0072ff, #00c6ff);
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0px 0px 8px rgba(0, 198, 255, 0.4);
+    }
+
+    .btn:hover {
+      transform: scale(1.07);
+      background: linear-gradient(90deg, #00c6ff, #0072ff);
+      box-shadow: 0px 0px 15px rgba(0, 198, 255, 0.6);
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 0.9rem;
+      color: #aaa;
+      text-align: center;
+    }
+
+    @media (max-width: 700px) {
+      table {
+        font-size: 0.85rem;
+      }
+
+      th, td {
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Sensor Detection Logs</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Thing ID</th>
+        <th>Property Name</th>
+        <th>Value</th>
+        <th>Updated At</th>
+        <th><a href="/deletelogs/{{thing_id}}">Delete</a></th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Example rows (replace with backend data dynamically) -->
+      
+    </tbody>
+  </table>
+
+  <a href="/" class="btn">← Back to Home</a>
+
+  <footer>
+    © 2025 IoT Object Detection | Real-time Sensing Logs
+  </footer>
+</body>
+</html>
