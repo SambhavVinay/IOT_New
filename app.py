@@ -1,17 +1,20 @@
-from flask import Flask, request, jsonify, render_template_string
+from flask import Flask, request, jsonify, render_template_string,render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from datetime import datetime
 from pyngrok import ngrok
 from threading import Thread
 import os
-
+import smtplib 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL',"sqlite:///site.db")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 app.config['secret_key'] = 'niggaballs'
+
+EMAIL_USER = os.getenv("EMAIL_USER")
+EMAIL_PASS = os.getenv("EMAIL_PASS")
 
 class IOT(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -23,11 +26,8 @@ class IOT(db.Model):
 
 @app.route("/")
 def home():
-    return render_template_string("""
-    <h1>Welcome to Arduino Logs Dashboard</h1>
-    <p>Click below to view the logs:</p>
-    <a href="/logs">View Logs</a>
-    """)
+    return render_template("index.html")
+    
 
 @app.route('/arduino-webhook', methods=['POST'])
 def arduino_webhook():
@@ -42,42 +42,25 @@ def arduino_webhook():
         )
         db.session.add(new_log)
         db.session.commit()
+        
         return jsonify({"status": "success"}), 200
+    
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
 
-@app.route("/deletelogs/<int:thing_id>")
-def deletelogs(thing_id):
-    IOT.query.filter_by(thing_id=thing_id).delete()
+@app.route("/deletelogs/<int:id>")
+def deletelogs(id):
+    log = IOT.query.filter_by(id=id).first()
+    db.session.delete(log)
     db.session.commit()
 
-@app.route('/logs')
+
+@app.route("/logs")
 def logs():
     all_logs = IOT.query.order_by(IOT.id.desc()).all()
-    return render_template_string("""
-    <h1>Arduino Logs</h1>
-    <table border="1" cellpadding="5">
-        <tr>
-            <th>ID</th>
-            <th>Thing ID</th>
-            <th>Property</th>
-            <th>Distance (cm)</th>
-            <th>Updated At</th>
-        </tr>
-        {% for log in logs %}
-        <tr>
-            <td>{{ log.id }}</td>
-            <td>{{ log.thing_id }}</td>
-            <td>{{ log.property_name }}</td>
-            <td>{{ log.value }}</td>
-            <td>{{ log.updated_at }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-    <p><a href="/">Back to Home</a></p>
-    """, logs=all_logs)
-
+    return render_template("logs.html",logs=all_logs)
+ 
 
 def start_ngrok():
     public_url = ngrok.connect(5000)
